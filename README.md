@@ -1,1 +1,1 @@
-# AspNetMVC_Stok_ve_Arsiv
+# Asp.Net-MVC-Urun-ve-Arsiv
