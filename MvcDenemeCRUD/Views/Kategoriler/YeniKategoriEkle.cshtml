@@ -1,0 +1,29 @@
+﻿@model MvcDenemeCRUD.Models.Entity.tbl_kategoriler
+@{
+    ViewBag.Title = "YeniKategoriEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Kategori Ekle</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <form action="#" method="post">
+
+                    <div class="form-group">
+                        <label>Kategori Adı</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.kategori_ad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.kategori_ad, "", new { @style = "color:red" })
+                    </div>
+
+                    <button type="submit" class="btn  btn-md btn-outline-success">Kaydet</button>
+                    <a href="#" class="btn btn-md btn-outline-danger float-right">iptal</a>
+                </form>
+            </div><!-- .widget-body -->
+        </div><!-- .widget -->
+    </div>
+</div>
+

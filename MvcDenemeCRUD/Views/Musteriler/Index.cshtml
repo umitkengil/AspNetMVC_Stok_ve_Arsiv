@@ -1,0 +1,85 @@
+﻿@using MvcDenemeCRUD.Models.Entity
+@model List<tbl_musteriler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mb-2">
+    <div class="col-sm-12">
+        <div class="btn-group-sm">
+            <a href="@Url.Action("Index","Home")" class="btn btn-outline-primary btn-md float-sm-left">
+                <i class="fas fa-chevron-circle-left"></i> Anasayfa
+            </a>
+            <a href="@Url.Action("YeniMusteriEkle","Musteriler")" class="btn btn-outline-success btn-md float-sm-right">
+                <i class="fas fa-chevron-circle-right"></i> Yeni Müşteri Ekle
+            </a>
+        </div>
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped ">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Müşteri Adı</th>
+                            <th>Müşteri Soyadı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var musteri in Model)
+                        {
+                        <tr>
+                            <td>@musteri.musteri_id</td>
+                            <td>@musteri.musteri_ad</td>
+                            <td>@musteri.musteri_soyad</td>
+                            <td>
+                                <a href="/Musteriler/MusteriGetir/@musteri.musteri_id" class="btn btn-outline-success">Güncelle</a>
+                                <button data-id="@musteri.musteri_id" id="btnSil" class="btn btn-outline-danger btnSil">Sil</button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+
+    $(".btnSil").on('click', function () {
+        var id = $(this).data("id");
+        $.get("/Musteriler/Sil/" + id).done(() => {
+            swal({
+                icon: "success",
+                text: "Silme işlemi Başarılı",
+            });
+            window.location.href = "/Musteriler/Index";
+        }).fail(() => {
+            swal({
+                icon: "error",
+                text: "Silme işlemi Başarısız",
+            });
+        });
+    });
+
+</script>
+
+

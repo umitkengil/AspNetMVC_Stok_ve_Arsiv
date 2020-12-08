@@ -1,0 +1,22 @@
+﻿@model MvcDenemeCRUD.Models.Entity.tbl_kategoriler
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kategori Getir</h2>
+
+
+@using (Html.BeginForm("Guncelle", "Kategoriler", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.kategori_id, new { @class = "form-control d-none" })
+        <br />
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m => m.kategori_ad, new { @class = "form-control" })
+    </div>
+    <div>
+        <button type="submit" class="btn btn-md btn-outline-success float-left">Güncelle </button>
+        <button type="reset" class="btn btn-outline-danger btn-md float-right">iptal</button>
+    </div>
+}

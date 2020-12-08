@@ -1,0 +1,25 @@
+﻿@model MvcDenemeCRUD.Models.Entity.tbl_musteriler
+@{
+    ViewBag.Title = "MusteriGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Musteri Getir</h2>
+
+@using (Html.BeginForm("Guncelle", "Musteriler", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.musteri_id, new { @class = "form-control d-none" })
+        <br />
+        <label>Müşteri Adı</label>
+        @Html.TextBoxFor(m => m.musteri_ad, new { @class = "form-control" })
+        <br />
+        <label>Müşteri Soyadı</label>
+        @Html.TextBoxFor(m=>m.musteri_soyad,new { @class="form-control"})
+    </div>
+    <div>
+        <button type="submit" class="btn btn-md btn-outline-success float-left">Güncelle </button>
+        <button type="reset" class="btn btn-outline-danger btn-md float-right">iptal</button>
+    </div>
+}
+

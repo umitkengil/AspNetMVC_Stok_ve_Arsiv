@@ -1,0 +1,90 @@
+﻿@using MvcDenemeCRUD.Models.Entity;
+@model List<tbl_urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row mb-2">
+    <div class="col-sm-12">
+        <div class="btn-group-sm">
+            <a href="@Url.Action("Index","Home")" class="btn btn-outline-primary btn-md float-sm-left">
+                <i class="fas fa-chevron-circle-left"></i> Anasayfa
+            </a>
+            <a href="@Url.Action("YeniUrunEkle","Urunler")" class="btn btn-outline-success btn-md float-sm-right">
+                <i class="fas fa-chevron-circle-right"></i> Yeni Ürün Ekle
+            </a>
+        </div>
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12 col-xs-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ürün Adı</th>
+                            <th>Ürün Markası</th>
+                            <th>Ürün Kategorisi</th>
+                            <th>Ürün Fiyatı</th>
+                            <th>Ürün Stok</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var urun in Model)
+                        {
+                        <tr>
+                            <td>@urun.urun_id</td>
+                            <td>@urun.urun_ad</td>
+                            <td>@urun.urun_marka</td>
+                            <td>@urun.tbl_kategoriler.kategori_ad</td>
+                            <td>@urun.urun_fiyat</td>
+                            <td>@urun.urun_stok</td>
+                            <td>
+                                <a href="/Urunler/UrunGetir/@urun.urun_id" class="btn btn-outline-success">Güncelle</a>
+                                <button data-id="@urun.urun_id" id="btnSil" class="btn btn-outline-danger btnSil">Sil</button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+
+    $(".btnSil").on('click', function () {
+        var id = $(this).data("id");
+        $.get("/Urunler/Sil/" + id).done(() => {
+            swal({
+                icon: "success",
+                text: "Silme işlemi Başarılı",
+            });
+            window.location.href = "/Urunler/Index";
+        }).fail(() => {
+            swal({
+                icon: "error",
+                text: "Silme işlemi Başarısız",
+            });
+        });
+    });
+
+</script>
+

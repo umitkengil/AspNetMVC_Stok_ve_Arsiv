@@ -1,0 +1,49 @@
+﻿@model MvcDenemeCRUD.Models.Entity.tbl_urunler
+@{
+    ViewBag.Title = "YeniUrunEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Urun Ekle</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <form action="#" method="post">
+
+                    <div class="form-group">
+                        <label>Ürün Adı</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.urun_ad, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.urun_ad, "", new { @style = "color:red" })
+                        <br />
+                        <label>Ürün Markası</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.urun_marka, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.urun_marka, "", new { @style = "color:red" })
+                        <br />
+                        <label>Ürün Kategori</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.DropDownListFor(m => m.tbl_kategoriler.kategori_id, (List<SelectListItem>)ViewBag.degerAl, new { @class = "form-control" })
+                        <br />
+                        <label>Ürün Fiyat</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.urun_fiyat, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.urun_fiyat, "", new { @style = "color:red" })
+                        <br />
+                        <label>Ürün Stok</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.urun_stok, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.urun_stok, "", new { @style = "color:red" })
+
+                    </div>
+
+                    <button type="submit" class="btn  btn-md btn-outline-success">Kaydet</button>
+                    <a href="#" class="btn btn-md btn-outline-danger float-right">iptal</a>
+                </form>
+            </div><!-- .widget-body -->
+        </div><!-- .widget -->
+    </div>
+</div>
+

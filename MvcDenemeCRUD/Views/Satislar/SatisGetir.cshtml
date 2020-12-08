@@ -1,0 +1,45 @@
+﻿@model MvcDenemeCRUD.Models.Entity.tbl_satislar
+@{
+    ViewBag.Title = "SatisGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Satis Düzenle</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-body">
+                <form action="/Satislar/Guncelle" method="post">
+
+                    <div class="form-group">
+                        
+                        <input class="form-control d-none" placeholder="Başlık" name="satis_id" value="@Model.satis_id">
+                        <label>Ürün Adı</label>
+
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.DropDownListFor(m => m.tbl_urunler.urun_id, (List<SelectListItem>)ViewBag.degerAl, new { @class = "form-control" })
+                        <br />
+                        <label>Müşteri</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.DropDownListFor(m => m.tbl_musteriler.musteri_id, (List<SelectListItem>)ViewBag.degerAl_musteri, new { @class = "form-control" })
+                        <br />
+                        <label>Ürün Adedi</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.adet, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.adet, "", new { @style = "color:red" })
+                        <br />
+                        <label>Ürün Fiyat</label>
+                        @*<input class="form-control" placeholder="Başlık" name="title">*@
+                        @Html.TextBoxFor(m => m.fiyati, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.fiyati, "", new { @style = "color:red" })
+
+                    </div>
+
+                    <button type="submit" class="btn  btn-md btn-outline-success">Kaydet</button>
+                    <a href="/Satislar" class="btn btn-md btn-outline-danger float-right">iptal</a>
+                </form>
+            </div><!-- .widget-body -->
+        </div><!-- .widget -->
+    </div>
+</div>
